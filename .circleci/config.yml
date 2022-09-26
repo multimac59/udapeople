@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   demo_faliure_job:
     docker:
-      - image: circleci\node:13.8.0
+      - image: circleci/node:13.8.0
     steps:
       - run: exit 1
       - run:
