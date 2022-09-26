@@ -18,20 +18,17 @@ jobs:
           name: "Say hello"
           command: "echo Hello, World!"
 
-  print_hello:
-    docker:
-      - image: circleci/node:13.8.0
-    steps:
-      - run: echo hello
+
   save_hello_world_output:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - run: echo "hello world" >> ~/output.txt
+      - run:  echo "hello world" >> ~/output.txt
       - persist to workspace:
           root: ~/
           paths: 
             - output.txt
+
   print_output_fille:
     docker:
       - image: circleci/node:13.8.0
