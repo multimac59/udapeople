@@ -1,28 +1,28 @@
 version: 2.1
 
 jobs:
-  save_hello_world_output:
+  save_hello_myname_output:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - run: echo "hello world" > ~/output.txt
+      - run: echo "my name is Mudit" >> ~/output1.txt
       - persist_to_workspace:
           root: ~/
           paths:
-            - output.txt
+            - output1.txt
 
-  print_output_file:
+  output_myname:
     docker:
       - image: circleci/node:13.8.0
     steps:
       - attach_workspace:
           at: ~/
-      - run: cat ~/output.txt
+      - run: cat ~/output1.txt
 
 workflows:
-  my_workflow:
+  myworkflow:
     jobs:
-      - save_hello_world_output
-      - print_output_file:
+      - save_hello_myname_output
+      - output_myname:
           requires:
-            - save_hello_world_output
+            - save_hello_myname_output
