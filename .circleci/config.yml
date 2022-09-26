@@ -1,40 +1,17 @@
 version: 2.1
 
-commands:
-  print_pipeline_id:
-    steps:
-      - run: echo $CIRCLE_WORKFLOW_ID
-
 jobs:
-  use_command_job:
+  demo_faliure_job:
     docker:
-      - image: circleci/node:13.8.0
+      - image: circleci\node:13.8.0
     steps:
-      - print_pipeline_id
-
-  save_hello_myname_output:
-    docker:
-      - image: circleci/node:13.8.0
-    steps:
-      - run: echo "my name is Mudit" >> ~/output1.txt
-      - persist_to_workspace:
-          root: ~/
-          paths:
-            - output1.txt
-
-  output_myname:
-    docker:
-      - image: circleci/node:13.8.0
-    steps:
-      - attach_workspace:
-          at: ~/
-      - run: cat ~/output1.txt
+      - run: exit 1
+      - run:
+          name: run on fail
+          command: echo "this job has failed, please look into"
+          when: on_fail
 
 workflows:
-  myworkflow:
+  demo_job_fail_wf:
     jobs:
-      - use_command_job
-      - save_hello_myname_output
-      - output_myname:
-          requires:
-            - save_hello_myname_output
+      - demo_faliure_job
