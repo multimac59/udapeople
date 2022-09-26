@@ -9,7 +9,8 @@ jobs:
   use_command_job:
     docker:
       - image: circleci/node:13.8.0
-    print_pipeline_id
+    steps:
+      - print_pipeline_id
 
   save_hello_myname_output:
     docker:
