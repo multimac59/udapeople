@@ -11,7 +11,7 @@ jobs:
           command: |
             aws cloudformation create-stack \
             --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
-            --template-body file://template.yaml \
+            --template-body template.yaml \
             --region=us-east-1
 
 workflows:
