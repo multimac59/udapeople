@@ -14,6 +14,7 @@ jobs:
             --template-body template.yaml \
             --region=us-east-1
 
+# add permissions to user for stack creation in IAM
 workflows:
   my_workflow:
     jobs:
