@@ -1,0 +1,17 @@
+version: 2.1
+
+jobs:
+  demo_faliure_job:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - run: exit 1
+      - run:
+          name: run on fail
+          command: echo "this job has failed, please look into"
+          when: on_fail
+
+workflows:
+  demo_job_fail_wf:
+    jobs:
+      - demo_faliure_job
