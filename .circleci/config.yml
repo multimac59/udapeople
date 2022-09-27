@@ -11,7 +11,7 @@ jobs:
           command: |
             aws cloudformation create-stack \
             --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
-            --template-body template.yaml \
+            --template-body file://template.yaml \
             --region=us-east-1
 
 # add permissions to user for stack creation in IAM
