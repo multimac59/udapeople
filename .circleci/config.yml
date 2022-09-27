@@ -9,7 +9,7 @@ jobs:
       - run:
           name: Create Cloudformation Stack
           command: |
-            aws cloudformation create-stack --template-body https://raw.githubusercontent.com/multimac59/udapeople/main/.circleci/template.yaml --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} --region us-east-1
+            aws cloudformation create-stack --template-body .circleci/template.yaml --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} --region us-east-1
 
 
 # add permissions to user for stack creation in IAM
