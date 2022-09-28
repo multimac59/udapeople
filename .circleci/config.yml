@@ -31,6 +31,24 @@ jobs:
           name: Run Playbook and Configure server
           command: |
             ansible-playbook -i inventory.txt main.yml
+
+# Exercise: Smoke Testing
+  smoke_test:
+    docker:
+      - image: alpine:latest
+    steps:
+      - run: apk add --update curl
+      - run:
+          name: smoke test
+          command: |
+            URL="https://blog.udacity.com/"
+            # Test if website exists
+            if curl -s --head ${URL} 
+            then
+              return 0
+            else
+              return 1
+            fi
   
 
 # add permissions to user for stack creation in IAM
@@ -38,5 +56,6 @@ workflows:
   my_workflow:
     jobs:
   #    - create_infrastructure
-      - configure_infrastructure
+  #    - configure_infrastructure
+      - smoke_test
       
